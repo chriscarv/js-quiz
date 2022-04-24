@@ -16,18 +16,22 @@ var setTime;
 
 var finalScore = document.getElementById("show-score");
 
+// form value
+var submitInit = document.getElementById("submit");
+submitInit.addEventListener("click", function(event){
+    event.preventDefault()
+    var initalsEl = document.querySelector('#user').value;
+    console.log(initalsEl);
+})
 
 
 function countdown(){
-
     timerValue-=1;
     timerEl.textContent = "Time: " + timerValue;
     if(timerValue  <= 0){
         showScore();
     }
-   
 }
-
 
 function startQuiz(){
     showQuiz.removeAttribute("id");
