@@ -19,14 +19,14 @@
   </div>
   <section class="quiz-sec" id="quiz">
       <p class="quiz-questions" id="questions"></p>
-      <button class="answer-btn" id="answer1" onclick="checkAnswer('1')"></button>
-      <button class="answer-btn" id="answer2" onclick="checkAnswer('2')"></button>
-      <button class="answer-btn" id="answer3" onclick="checkAnswer('3')"></button>
-      <button class="answer-btn" id="answer4" onclick="checkAnswer('4')"></button>
+      <button class="answer-btn" id="answer1" onclick="isCorrect('1')"></button>
+      <button class="answer-btn" id="answer2" onclick="isCorrect('2')"></button>
+      <button class="answer-btn" id="answer3" onclick="isCorrect('3')"></button>
+      <button class="answer-btn" id="answer4" onclick="isCorrect('4')"></button>
   </section>
   <section class="all-done" id="final-score">
       <h2>All done!</h2>
-      <p></p>
+      <p id="show-score"></p>
       <button>submit</button>
   </section>
   <section class="score-list" id="highscores">

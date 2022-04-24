@@ -1,5 +1,6 @@
 var startBtnEl = document.getElementById("start-btn");
 var showQuiz = document.getElementById("quiz");
+var showFinalScore = document.getElementById("final-score")
 var startPage = document.getElementById("start");
 var questionEl = document.getElementById("questions");
 var questionIndex = 0;
@@ -9,17 +10,24 @@ var button2 = document.getElementById("answer2");
 var button3 = document.getElementById("answer3");
 var button4 = document.getElementById("answer4");
 
-var correct;
-
 var timerEl = document.getElementById("time");
 var timerValue = 75;
 var setTime;
 
+var finalScore = document.getElementById("show-score");
+
+
+
 function countdown(){
-    timerValue--;
+
+    timerValue-=1;
     timerEl.textContent = "Time: " + timerValue;
+    if(timerValue  <= 0){
+        showScore();
+    }
    
 }
+
 
 function startQuiz(){
     showQuiz.removeAttribute("id");
@@ -29,7 +37,12 @@ function startQuiz(){
     displayQuestions();
 }
 
-
+function showScore(){
+    clearInterval(setTime);
+    showQuiz.setAttribute("id","quiz");
+    showFinalScore.removeAttribute("id");
+    finalScore.innerText = "your final score is  " + timerValue;
+}
 var questions = [
     {question: "Commonly used data types DO Not Include",
     answer1: "1. strings",
@@ -54,7 +67,7 @@ var questions = [
     answer2: "2. curly brackets",
     answer3: "3. quotes",
     answer4: "4. parenthesis",
-    answer: "4"},
+    answer: "3"},
     {question: "A very useful tool used during development and debugging for printing content to the debugger is:",
     answer1: "1. JavaScript",
     answer2: "2. terminal/bash",
@@ -62,8 +75,11 @@ var questions = [
     answer4: "4. console.log",
     answer: "4"}
 ];
-var lastindex = questions.length;
+
 function displayQuestions(){
+    if(questionIndex === lastindex){
+     return showScore();
+    }
     var showQuestion = questions[questionIndex];
     questionEl.innerHTML = "<p>" + showQuestion.question + "</p>";
     button1.innerHTML = showQuestion.answer1;
@@ -74,7 +90,7 @@ function displayQuestions(){
 var correct;
 var lastindex = questions.length;
 
-function checkAnswer(event){
+function isCorrect(event){
 correct = questions[questionIndex].answer;
 if(event === correct && questionIndex !== lastindex){
     console.log("right");
@@ -84,6 +100,7 @@ if(event === correct && questionIndex !== lastindex){
 else if (event !== correct && questionIndex !== lastindex){
     console.log("wrong");
     questionIndex ++;
+    timerValue -= 10;
     displayQuestions();
 }
 else{
