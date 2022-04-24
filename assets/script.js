@@ -9,6 +9,11 @@ var button2 = document.getElementById("answer2");
 var button3 = document.getElementById("answer3");
 var button4 = document.getElementById("answer4");
 
+var correct;
+var lastindex = questions.length;
+
+var timer = document.getElementById("time");
+timer = 75;
 
 startBtnEl.addEventListener("click",function(){
   showQuiz.removeAttribute("id");
@@ -17,30 +22,36 @@ startBtnEl.addEventListener("click",function(){
 });
 
 var questions = [
-    {question: "question 1",
-    answer1: "1",
-    answer2: "2",
-    answer3: "3",
-    answer4: "4",
-    answer: "1"},
-    {question: "question 2",
-    answer1: "1",
-    answer2: "2",
-    answer3: "3",
-    answer4: "4",
-    answer: "1"},
-    {question: "question 3",
-    answer1: "1",
-    answer2: "2",
-    answer3: "3",
-    answer4: "4",
-    answer: "1"},
-    {question: "question 4",
-    answer1: "1",
-    answer2: "2",
-    answer3: "3",
-    answer4: "4",
-    answer: "1"}
+    {question: "Commonly used data types DO Not Include",
+    answer1: "1. strings",
+    answer2: "2. booleans",
+    answer3: "3. alerts",
+    answer4: "4. numbers",
+    answer: "3"},
+    {question: "The condition in an if/ else statement is enclosed with ____.",
+    answer1: "1. quotes",
+    answer2: "2. curly brackets",
+    answer3: "3. parenthesis",
+    answer4: "4. square brackets",
+    answer: "3"},
+    {question: "Arrays in JavaScript can be used to store ____.",
+    answer1: "1. numbers and strings",
+    answer2: "2. other arrays",
+    answer3: "3. booleans",
+    answer4: "4. all of the above",
+    answer: "4"},
+    {question: "String values must be enclosed within ____ when being assigned to vairables",
+    answer1: "1. commas",
+    answer2: "2. curly brackets",
+    answer3: "3. quotes",
+    answer4: "4. parenthesis",
+    answer: "4"},
+    {question: "A very useful tool used during development and debugging for printing content to the debugger is:",
+    answer1: "1. JavaScript",
+    answer2: "2. terminal/bash",
+    answer3: "3. for loops",
+    answer4: "4. console.log",
+    answer: "4"}
 ];
 
 function displayQuestions(){
@@ -50,4 +61,26 @@ function displayQuestions(){
     button2.innerHTML = showQuestion.answer2;
     button3.innerHTML = showQuestion.answer3;
     button4.innerHTML = showQuestion.answer4;
+};
+var correct;
+var lastindex = questions.length;
+
+function checkAnswer(event){
+correct = questions[questionIndex].answer;
+if(event === correct && questionIndex !== lastindex){
+    console.log("right");
+    questionIndex ++;
+    displayQuestions();
 }
+else if (event !== correct && questionIndex !== lastindex){
+    console.log("wrong");
+    questionIndex ++;
+    displayQuestions();
+}
+else{
+    return;
+}
+};
+
+
+

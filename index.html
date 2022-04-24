@@ -8,6 +8,8 @@
     <title>Quiz</title>
 </head>
 <body>
+    <div class="head highscores" id="scores">highscores</div>
+    <div class="head timer" id="time">timer:75</div>
   <div class="start-quiz" id="start">
     <h1>Coding Quiz Challenge</h1>
     <p>Try to answer the following code-related questions within the time limit.
@@ -17,10 +19,10 @@
   </div>
   <section class="quiz-sec" id="quiz">
       <p class="quiz-questions" id="questions"></p>
-      <button class="answer-btn" id="answer1"></button>
-      <button class="answer-btn" id="answer2"></button>
-      <button class="answer-btn" id="answer3"></button>
-      <button class="answer-btn" id="answer4"></button>
+      <button class="answer-btn" id="answer1" onclick="checkAnswer('1')"></button>
+      <button class="answer-btn" id="answer2" onclick="checkAnswer('2')"></button>
+      <button class="answer-btn" id="answer3" onclick="checkAnswer('3')"></button>
+      <button class="answer-btn" id="answer4" onclick="checkAnswer('4')"></button>
   </section>
     <script src="./assets/script.js"></script>
 </body>
