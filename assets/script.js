@@ -10,16 +10,25 @@ var button3 = document.getElementById("answer3");
 var button4 = document.getElementById("answer4");
 
 var correct;
-var lastindex = questions.length;
 
-var timer = document.getElementById("time");
-timer = 75;
+var timerEl = document.getElementById("time");
+var timerValue = 75;
+var setTime;
 
-startBtnEl.addEventListener("click",function(){
-  showQuiz.removeAttribute("id");
-  startPage.style.display = "none";
-  displayQuestions();
-});
+function countdown(){
+    timerValue--;
+    timerEl.textContent = "Time: " + timerValue;
+   
+}
+
+function startQuiz(){
+    showQuiz.removeAttribute("id");
+    startPage.style.display = "none";
+    setTime = setInterval(countdown, 1000);
+    countdown();
+    displayQuestions();
+}
+
 
 var questions = [
     {question: "Commonly used data types DO Not Include",
@@ -53,7 +62,7 @@ var questions = [
     answer4: "4. console.log",
     answer: "4"}
 ];
-
+var lastindex = questions.length;
 function displayQuestions(){
     var showQuestion = questions[questionIndex];
     questionEl.innerHTML = "<p>" + showQuestion.question + "</p>";
@@ -83,4 +92,8 @@ else{
 };
 
 
+startBtnEl.addEventListener("click",function(){
+    console.log("start quiz");
+    startQuiz();
+});
 
