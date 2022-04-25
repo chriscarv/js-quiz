@@ -1,6 +1,7 @@
 var startBtnEl = document.getElementById("start-btn");
 var showQuiz = document.getElementById("quiz");
 var showFinalScore = document.getElementById("final-score")
+var showHighScores = document.getElementById("highscores");
 var startPage = document.getElementById("start");
 var questionEl = document.getElementById("questions");
 var questionIndex = 0;
@@ -10,19 +11,35 @@ var button2 = document.getElementById("answer2");
 var button3 = document.getElementById("answer3");
 var button4 = document.getElementById("answer4");
 
+var goBack = document.getElementById("restart");
+var clearScores = document.getElementById("clear");
+
 var timerEl = document.getElementById("time");
 var timerValue = 75;
 var setTime;
+var getList = document.getElementById("show-list");
 
 var finalScore = document.getElementById("show-score");
-
+var scores = [];
 // form value
 var submitInit = document.getElementById("submit");
+
 submitInit.addEventListener("click", function(event){
     event.preventDefault()
     var initalsEl = document.querySelector('#user').value;
-    console.log(initalsEl);
-})
+    //console.log(initalsEl);
+    var setScore = {
+        initials: initalsEl,
+        score: timerValue,
+    };
+    scores.push(setScore);
+    logScore();
+    highScores();
+});
+
+function logScore(){
+    localStorage.setItem("scores",JSON.stringify(scores));
+}
 
 
 function countdown(){
@@ -47,6 +64,30 @@ function showScore(){
     showFinalScore.removeAttribute("id");
     finalScore.innerText = "your final score is  " + timerValue;
 }
+
+
+function highScores(){
+showHighScores.removeAttribute("id");
+showFinalScore.setAttribute("id","final-score");
+highScoreList();
+
+}
+
+function highScoreList(){
+    var scoreList = JSON.parse(window.localStorage.getItem("scores")) || [];
+    scoreList.sort(function(a,b){
+        return b.score - a.score;
+    });
+    scoreList.forEach(function(scores){
+        var liEl = document.createElement("li");
+        liEl.textContent = scores.initials + " - " + scores.score;
+        var olEl = document.getElementById("show-list");
+        olEl.appendChild(liEl);
+    });
+}
+
+
+
 var questions = [
     {question: "Commonly used data types DO Not Include",
     answer1: "1. strings",
@@ -112,9 +153,18 @@ else{
 }
 };
 
+function clearLocalStorage(){
+    window.localStorage.clear();
+}
+clearScores.addEventListener("click",function(){
+    clearLocalStorage();
+});
 
 startBtnEl.addEventListener("click",function(){
     console.log("start quiz");
     startQuiz();
 });
+goBack.addEventListener("click",function(){
+    location.reload();
+})
 
