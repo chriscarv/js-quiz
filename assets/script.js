@@ -5,23 +5,19 @@ var showHighScores = document.getElementById("highscores");
 var startPage = document.getElementById("start");
 var questionEl = document.getElementById("questions");
 var questionIndex = 0;
-// button variables
 var button1 = document.getElementById("answer1");
 var button2 = document.getElementById("answer2");
 var button3 = document.getElementById("answer3");
 var button4 = document.getElementById("answer4");
-
+var feedback = document.getElementById("response");
 var goBack = document.getElementById("restart");
 var clearScores = document.getElementById("clear");
-
 var timerEl = document.getElementById("time");
 var timerValue = 75;
 var setTime;
 var getList = document.getElementById("show-list");
-
 var finalScore = document.getElementById("show-score");
 var scores = [];
-// form value
 var submitInit = document.getElementById("submit");
 
 submitInit.addEventListener("click", function(event){
@@ -81,12 +77,9 @@ function highScoreList(){
     scoreList.forEach(function(scores){
         var liEl = document.createElement("li");
         liEl.textContent = scores.initials + " - " + scores.score;
-        var olEl = document.getElementById("show-list");
-        olEl.appendChild(liEl);
+        getList.appendChild(liEl);
     });
 }
-
-
 
 var questions = [
     {question: "Commonly used data types DO Not Include",
@@ -132,17 +125,19 @@ function displayQuestions(){
     button3.innerHTML = showQuestion.answer3;
     button4.innerHTML = showQuestion.answer4;
 };
-var correct;
+var valid;
 var lastindex = questions.length;
 
 function isCorrect(event){
-correct = questions[questionIndex].answer;
-if(event === correct && questionIndex !== lastindex){
+valid= questions[questionIndex].answer;
+if(event === valid&& questionIndex !== lastindex){
+    feedback.innerText = "correct";
     console.log("right");
     questionIndex ++;
     displayQuestions();
 }
-else if (event !== correct && questionIndex !== lastindex){
+else if (event !== valid&& questionIndex !== lastindex){
+    feedback.innerText = "wrong";
     console.log("wrong");
     questionIndex ++;
     timerValue -= 10;

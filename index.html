@@ -15,7 +15,9 @@
     <p>Try to answer the following code-related questions within the time limit.
         Keep in mind that incorrect answers will penalize your score/time
         by ten seconds!</p>
+    <div class="center-btn">
     <button class="start-button btn-color" id="start-btn">start</button>
+    </div>
   </div>
   <section class="quiz-sec" id="quiz">
       <p class="quiz-questions" id="questions"></p>
@@ -23,6 +25,7 @@
       <button class="answer-btn btn-color" id="answer2" onclick="isCorrect('2')"></button>
       <button class="answer-btn btn-color" id="answer3" onclick="isCorrect('3')"></button>
       <button class="answer-btn btn-color" id="answer4" onclick="isCorrect('4')"></button>
+      <p id="response"></p>
   </section>
   <section class="all-done" id="final-score">
       <h2>All done!</h2>
@@ -30,14 +33,14 @@
       <form>
       <label for="initials">Enter initials:</label>
       <input type="text" placeholder="" id="user" class="form-input"/>
-      <button id="submit" class="btn-color">submit</button>
+      <button id="submit" class="sm-btn btn-color">submit</button>
       </form>
   </section>
   <section class="score-list" id="highscores">
       <h2>High scores</h2>
       <ol id="show-list"></ol>
-      <button id="restart" class="sm-btn btn-color">Go back</button>
-      <button id="clear" class="sm-btn btn-color">Clear high scores</button>
+      <button id="restart" class="md-btn btn-color">Go back</button>
+      <button id="clear" class="md-btn btn-color">Clear high scores</button>
   </section>
 
     <script src="./assets/script.js"></script>
